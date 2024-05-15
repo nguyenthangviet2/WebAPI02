@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI02.Models.DTO;
 
 namespace WebAPI02.Validate
 {
@@ -12,5 +13,6 @@ namespace WebAPI02.Validate
                 context.Result = new BadRequestResult();
             }
         }
+        
     }
 }

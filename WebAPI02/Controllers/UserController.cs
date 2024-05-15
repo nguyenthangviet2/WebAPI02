@@ -10,8 +10,7 @@ namespace WebAPI02.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ITokenRepository _tokenRepository;
-        public UserController(UserManager<IdentityUser> userManager, ITokenRepository
-       tokenRepository)
+        public UserController(UserManager<IdentityUser> userManager, ITokenRepository tokenRepository)
         {
             _userManager = userManager;
             _tokenRepository = tokenRepository;
@@ -27,8 +26,7 @@ namespace WebAPI02.Controllers
                 UserName = registerRequestDTO.Username,
                 Email = registerRequestDTO.Username
             };
-            var identityResult = await _userManager.CreateAsync(identityUser,
-           registerRequestDTO.Password);
+            var identityResult = await _userManager.CreateAsync(identityUser,registerRequestDTO.Password);
             if (identityResult.Succeeded)
             {
                 //add roles to this user

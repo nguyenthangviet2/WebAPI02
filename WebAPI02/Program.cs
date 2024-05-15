@@ -18,8 +18,11 @@ var _logger = new LoggerConfiguration()
  .CreateLogger();
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(_logger);
-// Add services to the container.
-
+//services.AddHttpContextAccessor();
+builder.Services.AddHttpContextAccessor();
+//
+builder.Services.AddHttpClient();
+// Add services to the container
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -32,6 +35,8 @@ builder.Services.AddScoped<IAuthorRepository, SQLAuthorRepository>();
 builder.Services.AddScoped<IPublisherRepository, SQLPublisherRepository>();
 //login
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+//image
+builder.Services.AddScoped<IImageRepository, LocalImageRepository>();
 // config identity user
 builder.Services.AddIdentityCore<IdentityUser>()
  .AddRoles<IdentityRole>()
@@ -47,6 +52,7 @@ builder.Services.Configure<IdentityOptions>(option =>
     option.Password.RequiredLength = 6;
     option.Password.RequiredUniqueChars = 1;
 });
+//
 //register DB
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
